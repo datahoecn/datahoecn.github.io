@@ -272,7 +272,7 @@ for i in range(n):
 
 ### 函数定义
 
-![](http://introcs.cs.princeton.edu/python/21function/images/AnatomyMethod.png "Defining Functions")
+![](http://introcs.cs.princeton.edu/python/21function/images/AnatomyMethod.png)
 
 - 第一行为**函数签名(signature)**，用于指定函数名称(function name)和每个形式参数变量名称。函数签名包括**关键字`def`**、**函数名**、**一个或多个形式参数变量名**、**英文冒号**。
 - 紧跟函数签名后的缩进代码定义**函数体(function body)**。

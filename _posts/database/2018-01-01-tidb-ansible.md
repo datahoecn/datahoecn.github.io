@@ -10,6 +10,10 @@ tag: [tidb, ansible]
 
 在剖析 tidb-ansible 框架之前，我们需要先了解下 Ansible，Ansible 作为近阶段优秀的自动化运维工具，实现了批量系统配置管理、批量程序部署、批量运行命令等功能。本身不具备批量部署的能力，真正具有批量部署的是 Ansible 所运行的模块，Ansible 只是提供一种框架，再了解 tidb 部署原因之前需要简单了解下整个框架的体系结构和工作原理。
 
+![](https://github.com/datahoecn/datahoecn.github.io/raw/master/effects/images/ansible.png)
+
+<!-- more -->
+
 (1) 连接插件 connection plugins：负责和被监控端实现通信；
 
 (2) host inventory：指定操作的主机，是一个配置文件里面定义监控的主机；
@@ -19,11 +23,6 @@ tag: [tidb, ansible]
 (4) 借助于插件完成记录日志邮件等功能；
 
 (5) playbook：剧本执行多个任务时，非必需可以让节点一次性运行多个任务。
-
-![]()
-
-
-<!-- more -->
 
 ## 内置数据类型
 
