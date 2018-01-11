@@ -10,9 +10,10 @@ tag: [tidb, ansible]
 
 在剖析 tidb-ansible 框架之前，我们需要先了解下 Ansible，Ansible 作为近阶段优秀的自动化运维工具，实现了批量系统配置管理、批量程序部署、批量运行命令等功能。本身不具备批量部署的能力，真正具有批量部署的是 Ansible 所运行的模块，Ansible 只是提供一种框架，再了解 tidb 部署原因之前需要简单了解下整个框架的体系结构和工作原理。
 
+<!-- more -->
+
 ![](https://github.com/datahoecn/datahoecn.github.io/raw/master/effects/images/ansible.png)
 
-<!-- more -->
 
 (1) 连接插件 connection plugins：负责和被监控端实现通信；
 
@@ -24,33 +25,17 @@ tag: [tidb, ansible]
 
 (5) playbook：剧本执行多个任务时，非必需可以让节点一次性运行多个任务。
 
-## 内置数据类型
+## tidb-ansible 体系结构
 
-### 整数类型
+### 基本组成
 
-**int数据类型用于表示整数或自然数**。
+TiDB-Ansible 是 PingCAP 基于 Ansible playbook 功能编写的集群部署工具，小伙伴能在这么短的时间内构建整个工具框架，能够快速部署一个完整的 TiDB 集群，并且支撑整个集群平滑的升级和扩容，让我们这些刚接触的人的确耗费一番功夫。其实理解了上面整个框架的基本组成后，整个部署和排错过程都不复杂。
 
-python语言中，int的取值范围可以为**任意大**，仅受限于计算机系统的可用内存量。
+整个工程可重点关注两个部分，下面我们分别说明下这两个部分。
 
-#### 运算 
+**invertory**
 
-- 加 `+`
-- 减 `-`
-- 乘 `*`
-- 整除 `//`
-- 取余 `%`
-- 乘幂 `**`
-- 一元运算符 `+` / `-`。表示整型数值的正负号。
+invertory 作为部署入口配置文件，需要填写集群配置信息，集群版本，集群部署信息，版本管控，系统变量等，具体配置可参考官网 [https://github.com/pingcap/docs-cn/edit/master/op-guide/ansible-deployment.md](https://github.com/pingcap/docs-cn/edit/master/op-guide/ansible-deployment.md)。
 
->注意：
->
->1. `**`乘幂运算符是**右结合**。
->例如，`2**2**3`的结果是256。
->
->2. python3中，浮点数除法运算符`/`作用于两个整数时，结果为浮点数，这与浮点数除法行为一致。例如，`17/2`的求值结果是8.5。**与python2不一致。**
->
->3. `-47//5`的求值结果是`-10`。因为运算符`//`是向下取整，即向负的无穷大取整。但是，`-47%5`的求值结果是`3`，原因是对于表达式`a%b`，计算结果的符号与`b`一致。
 
-### 浮点数
-
-**float数据类型用于表示浮点数值**。
+### Playbook 详解
